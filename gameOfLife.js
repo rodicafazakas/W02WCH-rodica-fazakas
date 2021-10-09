@@ -2,6 +2,32 @@
 const numberOfRows = 5;
 const numberOfColumns = 5;
 
+// we create the matrix of divs that will be painted in the HTML file
+function createMatrixHTML() {
+  console.log("hola");
+  let world = document.querySelector(".world");
+  let matrixHTML = document.createElement("table");
+  matrixHTML.className = "matrixHTML";
+
+  // create the cells of the matrix
+  for (let i=0; i < numberOfRows; i++) {
+    let tr = document.createElement("tr");
+    console.log("hola2");
+    for (let j=0; j< numberOfColumns; j++) {
+      let cell = document.createElement("td");
+      var textToCell = document.createTextNode("row "+i+", column "+j);
+      console.log("hola3");
+      cell.appendChild(textToCell);
+      tr.appendChild(cell);
+    }
+    matrixHTML.appendChild(tr);
+  }
+  world.appendChild(matrixHTML);
+  var startButton = document.getElementsByClass("start");
+  document.body.insertBefore(matrixHTML, startButton);
+ 
+}  
+
 // create the current state matrix and the next state matrix where all cells are dead
 // that is they contain only zeros
 let matrix = new Array(numberOfRows).fill(0)
@@ -15,7 +41,7 @@ matrix[1][2] = 1;
 matrix[2][2] = 1;
 matrix[3][2] = 1;
 
-console.log(matrix);
+//console.log(matrix);
 
 // count the neighbours
 function countNeighbours(row,columna) {
@@ -112,9 +138,9 @@ function countNeighbours(row,columna) {
 }
 
 
-console.log(countNeighbours(2,1));
-console.log(countNeighbours(0,1));
-console.log(countNeighbours(4,2));
+//console.log(countNeighbours(2,1));
+//console.log(countNeighbours(0,1));
+//console.log(countNeighbours(4,2));
 
 
 
@@ -147,7 +173,7 @@ function transition() {
 }
 
 transition();
-console.log(nextMatrix);
+//console.log(nextMatrix);
 
 // create a function the takes the initial state matrix to the next state matrix; 
 

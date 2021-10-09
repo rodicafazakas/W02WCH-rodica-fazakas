@@ -5,12 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game of Life</title>
-    <link rel="stylesheet" href="gameOfLife.css" />
+    <link rel="stylesheet" href="./gameOfLife.css" />
   </head>
+
   <body>
     <div class="world"></div>
-    <p>Site in progress...</p>
 
-    <script src="gameOfLife.js"></script>
+    <input
+      type="button"
+      value="START"
+      class="start"
+      onclick="createMatrixHTML()"
+    />
+
+    <script src="./gameOfLife.js" defer></script>
   </body>
 </html>
