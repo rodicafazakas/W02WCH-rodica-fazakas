@@ -5,19 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game of Life</title>
-    <link rel="stylesheet" href="./gameOfLife.css" />
+    <link rel="stylesheet" href="gameOfLife.css" />
   </head>
 
   <body>
+    <h1>Game of Life</h1>
     <div class="world"></div>
-
-    <input
-      type="button"
-      value="START"
-      class="start"
-      onclick="createMatrixHTML()"
-    />
-
-    <script src="./gameOfLife.js" defer></script>
+      <!---- Here goes the HTML matrix -->
+    </div>
+    <div class="buttons">
+      <button value="START" class="start" onclick="createMatrixHTML()">
+        START
+      </button>
+      <button value="START2" class="start2" onclick="transition()">
+        PATTERN GENERATION
+      </button>
+      <button value="STOP" class="stop">STOP</button>
+    </div>
+    <script src="gameOfLife.js" defer></script>
   </body>
 </html>

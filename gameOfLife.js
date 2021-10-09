@@ -4,34 +4,49 @@ const numberOfColumns = 5;
 
 // we create the matrix of divs that will be painted in the HTML file
 function createMatrixHTML() {
-  console.log("hola");
   let world = document.querySelector(".world");
-  let matrixHTML = document.createElement("table");
-  matrixHTML.className = "matrixHTML";
+  let matrix = document.createElement("table");
+  matrix.className = "matrixHTML";
 
   // create the cells of the matrix
   for (let i=0; i < numberOfRows; i++) {
     let tr = document.createElement("tr");
-    console.log("hola2");
+    
     for (let j=0; j< numberOfColumns; j++) {
       let cell = document.createElement("td");
-      var textToCell = document.createTextNode("row "+i+", column "+j);
-      console.log("hola3");
+      var textToCell = document.createTextNode(0);
       cell.appendChild(textToCell);
+      cell.className = "dead";
+      cell.setAttribute("id", i + "_" + j);
+      cell.onclick = cellClick;
       tr.appendChild(cell);
     }
-    matrixHTML.appendChild(tr);
+    matrix.appendChild(tr);
   }
-  world.appendChild(matrixHTML);
-  var startButton = document.getElementsByClass("start");
-  document.body.insertBefore(matrixHTML, startButton);
- 
+  world.appendChild(matrix);
+
 }  
+
+function cellClick() {
+  // the user clicks on the cell to enter the initial pattern and 
+  // mutate the initial matrix of dead cells
+  this.innerHTML = "";
+  let newValue = document.createTextNode(1);
+  this.appendChild(newValue); 
+  this.style.background ="blue"; 
+}
+
+//let matrixInitial = document.getElementsByTagName("table");
+//console.log(matrixInitial);   
 
 // create the current state matrix and the next state matrix where all cells are dead
 // that is they contain only zeros
-let matrix = new Array(numberOfRows).fill(0)
+let matrix2 = new Array(numberOfRows).fill(0)
                               .map( () => new Array(numberOfColumns).fill(0) );
+
+//const returnedTarget = Object.assign(matrix, matrixInitial);
+//console.log(returnedTarget);                              
+
 let nextMatrix = new Array(numberOfRows).fill(0)
                               .map( () => new Array(numberOfColumns).fill(0) );
 
@@ -173,7 +188,8 @@ function transition() {
 }
 
 transition();
-//console.log(nextMatrix);
+console.log(nextMatrix);
 
-// create a function the takes the initial state matrix to the next state matrix; 
+
+
 
