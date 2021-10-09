@@ -1,0 +1,27 @@
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.world {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightsalmon;
+  width: 500px;
+  height: 500px;
+}
+table {
+  background-color: whitesmoke;
+  width: 75%;
+  height: 75%;
+}
+td {
+  border: 1px solid darkgray;
+  width: 10px;
+  height: 10px;
+}
+.start {
+  margin-top: 10px;
+}
