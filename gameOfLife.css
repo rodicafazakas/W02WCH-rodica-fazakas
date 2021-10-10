@@ -5,6 +5,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    font-family: "Gill Sans Extrabold", Arial, Helvetica, sans-serif;
   }
 }
 
@@ -13,7 +14,7 @@
   display: flex;
   justify-content: center;
   margin: 30px auto;
-  padding: 30px;
+  padding: 20px;
   background-color: lightsalmon;
   width: 50vw;
   height: 65vh;
@@ -22,17 +23,17 @@
 table {
   text-align: center;
   vertical-align: middle;
-  background-color: whitesmoke;
+  background-color: peachpuff;
   margin: auto;
-  width: 75%;
-  height: 75%;
+  width: 90%;
+  height: 90%;
   animation: slidein;
   animation-duration: 2s;
 }
 
 td {
   border: 1px solid darkgray;
-  border-radius: 50%;
+  border-radius: 20px;
   width: 10px;
   height: 10px;
 }

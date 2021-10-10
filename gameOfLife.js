@@ -16,7 +16,7 @@ function createMatrixHTML() {
 
     for (let j = 0; j < numberOfColumns; j++) {
       const cell = document.createElement('td');
-      const textToCell = document.createTextNode(0);
+      const textToCell = document.createTextNode("");
       cell.appendChild(textToCell);
 
       cell.className = 'dead';
@@ -33,7 +33,7 @@ function cellClick() {
   // the user clicks on the cell to enter the initial pattern and
   // mutate the initial matrix of dead cells
   this.innerHTML = '';
-  const newValue = document.createTextNode(1);
+  const newValue = document.createTextNode("");
   this.appendChild(newValue);
   this.className = 'alive';
   const [row, column] = this.id.split('_').map((x) => +x);
@@ -42,9 +42,86 @@ function cellClick() {
 
 /* define pattern generation */
 
-// count the neighbours
-function countNeighbours(row, columna) {
+function countNeighbours(row, column) {
   let count = 0;
+
+  function countOnFirstRow() {
+    if (column === 0) {
+      count += matrix[row][column + 1];
+      count += matrix[row + 1][column];
+      count += matrix[row + 1][column + 1];
+    } else if (column === numberOfColumns - 1) {
+      count += matrix[row][column - 1];
+      count += matrix[row + 1][column];
+      count += matrix[row + 1][column - 1];
+    } else {
+      // 1. On the same row
+      count += matrix[row][column - 1];
+      count += matrix[row][column + 1];
+
+      // 2. One row down
+      count += matrix[row + 1][column - 1];
+      count += matrix[row + 1][column];
+      count += matrix[row + 1][column + 1];
+    }
+
+    return count;
+  }
+
+  function countOnLastRow() {
+    if (column === 0) {
+      count += matrix[row][column + 1];
+      count += matrix[row - 1][column];
+      count += matrix[row - 1][column + 1];
+    } else if (column === numberOfColumns - 1) {
+      count += matrix[row][column - 1];
+      count += matrix[row - 1][column];
+      count += matrix[row - 1][column - 1];
+    } else {
+      // 1. On the same row
+      count += matrix[row][column - 1];
+      count += matrix[row][column + 1];
+
+      // 2. One row down
+      count += matrix[row - 1][column - 1];
+      count += matrix[row - 1][column];
+      count += matrix[row - 1][column + 1];
+    }
+
+    return count;
+  }
+
+  function countOnMiddleRow() {
+    if (column === 0) {
+      count += matrix[row][column + 1];
+      count += matrix[row - 1][column];
+      count += matrix[row - 1][column + 1];
+      count += matrix[row + 1][column];
+      count += matrix[row + 1][column + 1];
+    } else if (column === numberOfColumns - 1) {
+      count += matrix[row][column - 1];
+      count += matrix[row - 1][column];
+      count += matrix[row - 1][column - 1];
+      count += matrix[row + 1][column];
+      count += matrix[row + 1][column - 1];
+    } else {
+      // 1. On the same row
+      count += matrix[row][column - 1];
+      count += matrix[row][column + 1];
+
+      // 2. One row down
+      count += matrix[row - 1][column - 1];
+      count += matrix[row - 1][column];
+      count += matrix[row - 1][column + 1];
+
+      // 2. One row up
+      count += matrix[row + 1][column - 1];
+      count += matrix[row + 1][column];
+      count += matrix[row + 1][column + 1];
+    }
+
+    return count;
+  }
 
   if (row === 0) {
     count = countOnFirstRow();
@@ -55,84 +132,6 @@ function countNeighbours(row, columna) {
   }
 
   return count;
-
-  function countOnFirstRow() {
-    if (columna === 0) {
-      count += matrix[row][columna + 1];
-      count += matrix[row + 1][columna];
-      count += matrix[row + 1][columna + 1];
-    } else if (columna === numberOfColumns - 1) {
-      count += matrix[row][columna - 1];
-      count += matrix[row + 1][columna];
-      count += matrix[row + 1][columna - 1];
-    } else {
-      // 1. On the same row
-      count += matrix[row][columna - 1];
-      count += matrix[row][columna + 1];
-
-      // 2. One row down
-      count += matrix[row + 1][columna - 1];
-      count += matrix[row + 1][columna];
-      count += matrix[row + 1][columna + 1];
-    }
-
-    return count;
-  }
-
-  function countOnLastRow() {
-    if (columna === 0) {
-      count += matrix[row][columna + 1];
-      count += matrix[row - 1][columna];
-      count += matrix[row - 1][columna + 1];
-    } else if (columna === numberOfColumns - 1) {
-      count += matrix[row][columna - 1];
-      count += matrix[row - 1][columna];
-      count += matrix[row - 1][columna - 1];
-    } else {
-      // 1. On the same row
-      count += matrix[row][columna - 1];
-      count += matrix[row][columna + 1];
-
-      // 2. One row down
-      count += matrix[row - 1][columna - 1];
-      count += matrix[row - 1][columna];
-      count += matrix[row - 1][columna + 1];
-    }
-
-    return count;
-  }
-
-  function countOnMiddleRow() {
-    if (columna === 0) {
-      count += matrix[row][columna + 1];
-      count += matrix[row - 1][columna];
-      count += matrix[row - 1][columna + 1];
-      count += matrix[row + 1][columna];
-      count += matrix[row + 1][columna + 1];
-    } else if (columna === numberOfColumns - 1) {
-      count += matrix[row][columna - 1];
-      count += matrix[row - 1][columna];
-      count += matrix[row - 1][columna - 1];
-      count += matrix[row + 1][columna];
-      count += matrix[row + 1][columna - 1];
-    } else {
-      // 1. On the same row
-      count += matrix[row][columna - 1];
-      count += matrix[row][columna + 1];
-
-      // 2. One row down
-      count += matrix[row - 1][columna - 1];
-      count += matrix[row - 1][columna];
-      count += matrix[row - 1][columna + 1];
-
-      // 2. One row up
-      count += matrix[row + 1][columna - 1];
-      count += matrix[row + 1][columna];
-      count += matrix[row + 1][columna + 1];
-    }
-
-    return count;
-  }
 }
 
 // define the rules that take us to the next state matrix
@@ -174,14 +173,20 @@ function updateWorld() {
       if (matrix[row][col] == 0) {
         cell.setAttribute('class', 'dead');
         cell.innerHTML = '';
-        const newValue = document.createTextNode(0);
+        const newValue = document.createTextNode("");
         cell.appendChild(newValue);
       } else {
         cell.setAttribute('class', 'alive');
         cell.innerHTML = '';
-        const newValue = document.createTextNode(1);
+        const newValue = document.createTextNode("");
         cell.appendChild(newValue);
       }
     }
   }
 }
+
+module.exports = {
+  countOnFirstRow,
+  countOnLastRow,
+  countOnMiddleRow,
+};
