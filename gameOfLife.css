@@ -1,17 +1,22 @@
-.body {
-  padding: 20px;
-  background-color: #444;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@media screen and (min-width: 600px) {
+  body {
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
 }
 
 .world {
-  margin: auto;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
   padding: 30px;
   background-color: lightsalmon;
-  width: 500px;
-  height: 500px;
+  width: 50vw;
+  height: 65vh;
 }
 
 table {
@@ -21,10 +26,13 @@ table {
   margin: auto;
   width: 75%;
   height: 75%;
+  animation: slidein;
+  animation-duration: 2s;
 }
 
 td {
   border: 1px solid darkgray;
+  border-radius: 50%;
   width: 10px;
   height: 10px;
 }
@@ -39,7 +47,7 @@ td.alive {
 
 h1 {
   text-align: center;
-  margin: 10px auto;
+  margin: 15px auto;
 }
 
 .buttons {
@@ -48,6 +56,14 @@ h1 {
   display: flex;
   justify-content: space-around;
   margin-top: 10px;
-  width: 300px;
   height: 20px;
+  width: 30vw;
+}
+
+button {
+  border-radius: 20px;
+  margin: 5px;
+  width: 130px;
+  height: 20px;
+  font-size: 13px;
 }

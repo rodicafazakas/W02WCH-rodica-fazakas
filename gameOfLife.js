@@ -1,6 +1,6 @@
 // game of life
-const numberOfRows = 5;
-const numberOfColumns = 5;
+const numberOfRows = 10;
+const numberOfColumns = 13;
 
 // pass the values of the matrixHTML to the current state matrix 
 let matrix = new Array(numberOfRows).fill(0).map( () => new Array(numberOfColumns).fill(0) );
@@ -16,8 +16,9 @@ function createMatrixHTML() {
     
     for (let j=0; j< numberOfColumns; j++) {
       let cell = document.createElement("td");
-      var textToCell = document.createTextNode(0);
+      let textToCell = document.createTextNode(0);
       cell.appendChild(textToCell);
+
       cell.className = "dead";
       cell.setAttribute("id", i + "_" + j);
       cell.onclick = cellClick;
