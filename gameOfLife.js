@@ -2,8 +2,11 @@
 const numberOfRows = 10;
 const numberOfColumns = 13;
 
-// pass the values of the matrixHTML to the current state matrix 
+
+// initialize current state and next state matrices and fill them with zeros 
 let matrix = new Array(numberOfRows).fill(0).map( () => new Array(numberOfColumns).fill(0) );
+let nextMatrix = new Array(numberOfRows).fill(0).map( () => new Array(numberOfColumns).fill(0) );
+
 
 // we create the matrix of divs that will be painted in the HTML file
 function createMatrixHTML() {
@@ -41,20 +44,7 @@ function cellClick() {
   matrix[row][column] = 1;
 }
 
-//let matrixInitial = document.getElementsByTagName("table");
-//console.log(matrixInitial);   
-
-
-let nextMatrix = new Array(numberOfRows).fill(0)
-                              .map( () => new Array(numberOfColumns).fill(0) );
-
-
-// fill the array                            
-//matrix[1][2] = 1;
-//matrix[2][2] = 1;
-//matrix[3][2] = 1;
-
-//console.log(matrix);
+/* define pattern generation */
 
 // count the neighbours
 function countNeighbours(row,columna) {
@@ -151,12 +141,6 @@ function countNeighbours(row,columna) {
 }
 
 
-//console.log(countNeighbours(2,1));
-//console.log(countNeighbours(0,1));
-//console.log(countNeighbours(4,2));
-
-
-
 // define the rules that take us to the next state matrix
 function transition() {
   console.log(matrix);
@@ -183,11 +167,9 @@ function transition() {
       }
     }  
   } 
-console.log(nextMatrix);
+  console.log(nextMatrix);
+  matrix = nextMatrix;
 }
-
-// transition();
-// console.log(nextMatrix);
 
 // update the world
 function updateWorld() {
@@ -209,6 +191,5 @@ function updateWorld() {
     }
   }
 }
-
 
 
