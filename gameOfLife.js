@@ -4,7 +4,6 @@ const numberOfColumns = 13;
 
 // initialize current state and next state matrices and fill them with zeros
 let matrix = new Array(numberOfRows).fill(0).map(() => new Array(numberOfColumns).fill(0));
-const nextMatrix = new Array(numberOfRows).fill(0).map(() => new Array(numberOfColumns).fill(0));
 
 // we create the matrix of divs that will be painted in the HTML file
 function createMatrixHTML() {
@@ -138,7 +137,8 @@ function countNeighbours(row, columna) {
 
 // define the rules that take us to the next state matrix
 function transition() {
-  console.log(matrix);
+  const nextMatrix = new Array(numberOfRows).fill(0).map(() => new Array(numberOfColumns).fill(0));
+
   for (let row = 0; row < numberOfRows; row++) {
     for (let col = 0; col < numberOfColumns; col++) {
       const numberOfNeighbours = countNeighbours(row, col);
@@ -162,7 +162,6 @@ function transition() {
       }
     }
   }
-  console.log(nextMatrix);
   matrix = nextMatrix;
 }
 
@@ -172,7 +171,7 @@ function updateWorld() {
   for (let row = 0; row < numberOfRows; row++) {
     for (let col = 0; col < numberOfColumns; col++) {
       cell = document.getElementById(`${row}_${col}`);
-      if (nextMatrix[row][col] == 0) {
+      if (matrix[row][col] == 0) {
         cell.setAttribute('class', 'dead');
         cell.innerHTML = '';
         const newValue = document.createTextNode(0);
