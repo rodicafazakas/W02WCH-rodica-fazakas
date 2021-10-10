@@ -58,13 +58,13 @@ h1 {
   justify-content: space-around;
   margin-top: 10px;
   height: 20px;
-  width: 30vw;
+  width: 60vw;
 }
 
 button {
   border-radius: 20px;
   margin: 5px;
-  width: 130px;
+  width: 200px;
   height: 20px;
   font-size: 13px;
 }

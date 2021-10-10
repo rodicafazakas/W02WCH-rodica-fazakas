@@ -42,7 +42,7 @@ function cellClick() {
 
 /* define pattern generation */
 
-function countNeighbours(row, column) {
+function countNeighbours(row, column, matrix) {
   let count = 0;
 
   function countOnFirstRow() {
@@ -140,7 +140,7 @@ function transition() {
 
   for (let row = 0; row < numberOfRows; row++) {
     for (let col = 0; col < numberOfColumns; col++) {
-      const numberOfNeighbours = countNeighbours(row, col);
+      const numberOfNeighbours = countNeighbours(row, col, matrix);
       // apply the rules of the game
       // if alive, stays alive if it has min 2 neighbours alive; otherwise it dies
       if (matrix[row][col] === 1) {
@@ -186,7 +186,5 @@ function updateWorld() {
 }
 
 module.exports = {
-  countOnFirstRow,
-  countOnLastRow,
-  countOnMiddleRow,
+  countNeighbours
 };
