@@ -8,15 +8,12 @@
     <link rel="stylesheet" href="gameOfLife.css" />
   </head>
 
-  <body>
+  <body onload="createMatrixHTML()">
     <h1>Game of Life</h1>
     <div class="world"></div>
       <!---- Here goes the HTML matrix -->
     </div>
     <div class="buttons">
-      <button value="START" class="start" onclick="createMatrixHTML()">
-        Create matrix
-      </button>
       <button value="START2" class="start2" onclick="transition(), updateWorld()">
         Start game
       </button>
