@@ -1,26 +1,39 @@
 // game of life
+
+// rules
+const rules = document.querySelector(".rules");
+const info = () => {
+  rules.styles.display = "block";
+};
+const closeInfo = () => {
+  rules.styles.display = "none";
+};
+
+// table dimensions
 const numberOfRows = 10;
 const numberOfColumns = 13;
 
 // initialize current state and next state matrices and fill them with zeros
-let matrix = new Array(numberOfRows).fill(0).map(() => new Array(numberOfColumns).fill(0));
+let matrix = new Array(numberOfRows)
+  .fill(0)
+  .map(() => new Array(numberOfColumns).fill(0));
 
 // we create the matrix of divs that will be painted in the HTML file
 function createMatrixHTML() {
-  const world = document.querySelector('.world');
-  const matrixHTML = document.createElement('table');
-  matrixHTML.className = 'matrixHTML';
+  const world = document.querySelector(".world");
+  const matrixHTML = document.createElement("table");
+  matrixHTML.className = "matrixHTML";
 
   for (let i = 0; i < numberOfRows; i++) {
-    const tr = document.createElement('tr');
+    const tr = document.createElement("tr");
 
     for (let j = 0; j < numberOfColumns; j++) {
-      const cell = document.createElement('td');
+      const cell = document.createElement("td");
       const textToCell = document.createTextNode("");
       cell.appendChild(textToCell);
 
-      cell.className = 'dead';
-      cell.setAttribute('id', `${i}_${j}`);
+      cell.className = "dead";
+      cell.setAttribute("id", `${i}_${j}`);
       cell.onclick = cellClick;
       tr.appendChild(cell);
     }
@@ -32,11 +45,11 @@ function createMatrixHTML() {
 function cellClick() {
   // the user clicks on the cell to enter the initial pattern and
   // mutate the initial matrix of dead cells
-  this.innerHTML = '';
+  this.innerHTML = "";
   const newValue = document.createTextNode("");
   this.appendChild(newValue);
-  this.className = 'alive';
-  const [row, column] = this.id.split('_').map((x) => +x);
+  this.className = "alive";
+  const [row, column] = this.id.split("_").map((x) => +x);
   matrix[row][column] = 1;
 }
 
@@ -136,7 +149,9 @@ function countNeighbours(row, column, matrix) {
 
 // define the rules that take us to the next state matrix
 function transition() {
-  const nextMatrix = new Array(numberOfRows).fill(0).map(() => new Array(numberOfColumns).fill(0));
+  const nextMatrix = new Array(numberOfRows)
+    .fill(0)
+    .map(() => new Array(numberOfColumns).fill(0));
 
   for (let row = 0; row < numberOfRows; row++) {
     for (let col = 0; col < numberOfColumns; col++) {
@@ -166,18 +181,18 @@ function transition() {
 
 // update the world
 function updateWorld() {
-  let cell = '';
+  let cell = "";
   for (let row = 0; row < numberOfRows; row++) {
     for (let col = 0; col < numberOfColumns; col++) {
       cell = document.getElementById(`${row}_${col}`);
       if (matrix[row][col] == 0) {
-        cell.setAttribute('class', 'dead');
-        cell.innerHTML = '';
+        cell.setAttribute("class", "dead");
+        cell.innerHTML = "";
         const newValue = document.createTextNode("");
         cell.appendChild(newValue);
       } else {
-        cell.setAttribute('class', 'alive');
-        cell.innerHTML = '';
+        cell.setAttribute("class", "alive");
+        cell.innerHTML = "";
         const newValue = document.createTextNode("");
         cell.appendChild(newValue);
       }
@@ -185,6 +200,9 @@ function updateWorld() {
   }
 }
 
+// no funciona
+setInterval(() => updateWorld, 1000);
+
 module.exports = {
-  countNeighbours
+  countNeighbours,
 };
