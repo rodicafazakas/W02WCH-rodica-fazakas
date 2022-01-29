@@ -3,10 +3,10 @@
 // rules
 const rules = document.querySelector(".rules");
 const info = () => {
-  rules.styles.display = "block";
+  rules.style.display = "block";
 };
 const closeInfo = () => {
-  rules.styles.display = "none";
+  rules.style.display = "none";
 };
 
 // table dimensions
@@ -199,10 +199,3 @@ function updateWorld() {
     }
   }
 }
-
-// no funciona
-setInterval(() => updateWorld, 1000);
-
-module.exports = {
-  countNeighbours,
-};

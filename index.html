@@ -12,7 +12,7 @@
 
   <body onload="createMatrixHTML()">
     <h1> Game of Life </h1>
-    <buton onclick='info()'> Info </buton>
+    <buton onclick='info()'> Click for info </buton>
       <div class='rules'>
         <h2> Game Rules: </h2>
         <ul>
@@ -27,8 +27,11 @@
       <!---- Here goes the HTML matrix -->
     </div>
     <div class="buttons">
-      <button value="START2" class="start2" onclick="transition(), updateWorld()">
-        Play game (manual transition)
+      <button value="START2" class="start2" onclick="setInterval(() => {
+                                                                transition();
+                                                                updateWorld();
+                                                              }, 1000);">
+        Play game
       </button>
     </div>
     <script src="gameOfLife.js" defer></script>
