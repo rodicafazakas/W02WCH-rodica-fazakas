@@ -64,7 +64,11 @@ h1 {
 button {
   border-radius: 20px;
   margin: 5px;
-  width: 200px;
+  width: 100px;
   height: 20px;
   font-size: 13px;
+}
+
+.rules {
+  display: none;
 }
